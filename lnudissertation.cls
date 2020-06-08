@@ -157,12 +157,26 @@
   \clearpage
   \thispagestyle{plain}
   \phantomsection%
-  \addcontentsline{toc}{chapter}{#1}%
+%  \addcontentsline{toc}{chapter}{#1}%
   \begin{center}
     \Large\bfseries #1
   \end{center}
   \par%\vspace{.25\baselineskip}
   \noindent\ignorespaces
+}{}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+\newenvironment{popsci-abstract}[1][Abstract]{%
+	\clearpage
+	\thispagestyle{plain}
+	\phantomsection%
+	%  \addcontentsline{toc}{chapter}{#1}%
+	\begin{center}
+		\Large\bfseries #1
+	\end{center}
+	\par%\vspace{.25\baselineskip}
+	\noindent\ignorespaces
 }{}
 \setcounter{secnumdepth}{1}
 \setcounter{tocdepth}{1}

@@ -29,6 +29,8 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage{pbox}
 
+%% Used for list of abbreviations and abbreviations in general
+\usepackage{acro}
 
 %% Font setup below; the order of loading and substituting the fonts is rather specific here
 
@@ -144,6 +146,9 @@
   }
 }
 
+%% Include abbreviation definitions
+\input{glossary}
+
 %----------------------------------------------------------------------------------------------------
 %------------------------HERE STARTS THE PRINTING --------------------------------
 %----------------------------------------------------------------------------------------------------
@@ -162,10 +167,20 @@
 %% p. v: abstract page produced by LNU Press (includes a bibliographical reference)
 %% p. vii: here starts the content provided by the author (dedication in p. vii, author-produced abstract in p. ix, acknowledgments, and so on)
 \input{front-matter-lud}
+\input{abstract} % This abstract is replaced by LUD, but is included for writing convenience
 \input{dedication}
 \frontmatter
-\input{abstract}
-\input{acknowledgments}
+\input{popsci-abstract} % Secondary popular science abstract in swedish
+
+% Add the list of publications
+\input{publications}
+\clearpage
+
+%% List of abbreviations
+\printacronyms[include-classes=abbrev, name=List of Abbreviations, heading=chapter*]
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\markboth{List of Abbreviations}{List of Abbreviations}
+\cleardoublepage
 
 %% Start the ToC and add the corresponding lists
 \renewcommand\contentsname{Table of Contents}
@@ -186,23 +201,20 @@
 %% tables: if required, \begin{table}[t] ... \begin{minipage}{0.975\textwidth} ... \begin{tabular}{lll}
 %% Also, note that percent signs at the end of some commands/lines might be important to avoid extra space
 
-\phantomsection
-\addcontentsline{toc}{chapter}{\listfigurename{}}
-\listoffigures
-\cleardoublepage
-
-\phantomsection
-\addcontentsline{toc}{chapter}{\listtablename{}}
-\listoftables
-\cleardoublepage
+%$ Lists of figures and tables are not typically present for compilation thesis
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\listfigurename{}}
+%\listoffigures
+%\cleardoublepage
+%
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\listtablename{}}
+%\listoftables
+%\cleardoublepage
 
 %% The list of listings is not tested!!
 %% Add the listings package in case it is needed, too
 %\lstlistoflistings
-
-% Add the list of publications
-\input{publications}
-\cleardoublepage
 
 %----------------------------------------------------------------------------------------------------
 %---------------------HERE STARTS THE THESIS CONTENT-------------------------
@@ -214,10 +226,17 @@
 \cleardoublepage
 \input{background}
 \cleardoublepage
-\input{related-work}
+\input{aims-objectives}
+\cleardoublepage
+\input{methods}
+\cleardoublepage
+\input{results-discussion}
 \cleardoublepage
 %% ...
 \input{conclusions}
+\cleardoublepage
+
+\input{acknowledgments} % acknowledgements last
 \cleardoublepage
 
 %----------------------------------------------------------------------------------------------------
